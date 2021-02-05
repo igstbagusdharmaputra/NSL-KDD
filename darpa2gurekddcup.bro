@@ -349,7 +349,7 @@ event udp_contents(u: connection, is_orig: bool, contents: string)
 ################# ICMP ########################
 function record_connectionICMP(c: connection){
   local startTime : string = fmt ("%.6f", c$start_time-6*60min);
-  local duration : string = fmt ("%.6f", c$duration);
+  local duration : string = fmt ("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -367,7 +367,7 @@ function record_connectionICMP(c: connection){
 event icmp_echo_request(c: connection, icmp: icmp_conn, id: count, seq: count, payload: string)
 {
   local startTime : string = fmt ("%.6f", c$start_time-6*60min);
-  local duration : string = fmt ("%.6f", c$duration);
+  local duration : string = fmt ("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -412,7 +412,7 @@ event icmp_echo_request(c: connection, icmp: icmp_conn, id: count, seq: count, p
 event icmp_echo_reply(c: connection, icmp: icmp_conn, id: count, seq: count, payload: string)
 {
   local startTime : string = fmt ("%.6f", c$start_time-6*60min);
-  local duration : string = fmt ("%.6f", c$duration);
+  local duration : string = fmt ("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -457,7 +457,7 @@ event icmp_echo_reply(c: connection, icmp: icmp_conn, id: count, seq: count, pay
 event icmp_unreachable(c: connection, icmp: icmp_conn, code: count, context: icmp_context)
 {
   local startTime : string = fmt ("%.6f", c$start_time-6*60min);
-  local duration : string = fmt ("%.6f", c$duration);
+  local duration : string = fmt ("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -501,7 +501,7 @@ event icmp_unreachable(c: connection, icmp: icmp_conn, code: count, context: icm
 event icmp_time_exceeded(c: connection, icmp: icmp_conn, code: count, context: icmp_context)
 {
   local startTime : string = fmt ("%.6f", c$start_time-6*60min);
-  local duration : string = fmt ("%.6f", c$duration);
+  local duration : string = fmt ("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -674,7 +674,7 @@ event bro_done()
 event packet_contents(c: connection, contents: string)
 {
  local startTime : string = fmt ("%.6f", c$start_time-6*60min); 
- local duration : string = fmt ("%.6f", c$duration);
+ local duration : string = fmt ("%.0f", c$duration);
  local orig_h : addr = c$id$orig_h;
  local resp_h : addr = c$id$resp_h;
  local orig_p : port = c$id$orig_p;
