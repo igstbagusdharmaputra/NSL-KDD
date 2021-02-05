@@ -150,7 +150,7 @@ int main(int argc, char **argv)
 			srv_error_rate= (float)0;
 			srv_diff_host_rate= (float)0;
 		}
-		sprintf(line, "%s,%d,%d,%f,%f,%f,%f,%f,%f,%f", 
+		sprintf(line, "%s,%d,%d,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f", 
 							line1, 
 							count,srv_count,serror_rate,srv_serror_rate,rerror_rate,srv_error_rate,same_srv_rate,diff_srv_rate,srv_diff_host_rate);
 		line[strlen(line)] = '\0';
@@ -243,7 +243,7 @@ int main(int argc, char **argv)
 			same_src_port_rate=(float)0;
 
 		strcpy(line1, inigo[noraino]);
-    sprintf(line, "%s,%d,%d,%f,%f,%f,%f,%f,%f,%f,%f",
+    sprintf(line, "%s,%d,%d,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f",
           		line1, 
     					count,srv_count,same_srv_rate,diff_srv_rate,same_src_port_rate,srv_diff_host_rate,serror_rate,srv_serror_rate,rerror_rate,srv_rerror_rate);
   	line[strlen(line)] = '\0';

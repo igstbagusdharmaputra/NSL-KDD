@@ -221,7 +221,7 @@ function record_connectionTCP(c: connection){
      	++num_conn;
      	konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$num_conn = num_conn;
    	}   
-   	konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$duration = fmt("%.6f", c$duration);
+   	konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$duration = fmt("%.0f", c$duration);
 		konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$flag = conn_state(c, "tcp"); 
    	konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$src_bytes = fmt("%d", c$orig$size);
   	konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$dst_bytes = fmt("%d", c$resp$size); 
@@ -697,7 +697,7 @@ event packet_contents(c: connection, contents: string)
 #    				fmt("%s\n%s", konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$payload, contents);
   		}
  		}
-		konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$duration = fmt("%.6f", c$duration);  
+		konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$duration = fmt("%.0f", c$duration);  
 		konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$flag = conn_state(c, "tcp");
 		konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$src_bytes = fmt("%s", c$orig$size);
 		konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$dst_bytes = fmt("%s", c$resp$size);
@@ -751,7 +751,7 @@ event packet_contents(c: connection, contents: string)
 function konexioaSortu(c: connection){
 	local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -764,7 +764,7 @@ function konexioaSortu(c: connection){
 
      	++num_conn;
      	konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$num_conn = num_conn;
-  		konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$duration = fmt("%.6f", c$duration);
+  		konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$duration = fmt("%.0f", c$duration);
    		konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$flag = conn_state(c, "tcp");
    		konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$src_bytes = fmt("%d", c$orig$size);
    		konexioaktcp[startTime, orig_h, orig_p, resp_h, resp_p]$dst_bytes = fmt("%d", c$resp$size);
@@ -800,7 +800,7 @@ function konexioaSortu(c: connection){
 function logged_in(c: connection){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -818,7 +818,7 @@ function logged_in(c: connection){
 function inkrHotGuest(c: connection, username: string){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -845,7 +845,7 @@ function inkrHotGuest(c: connection, username: string){
 function num_failed_logins(c: connection){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -860,7 +860,7 @@ function num_failed_logins(c: connection){
 function not_found(c: connection, line: string){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -877,7 +877,7 @@ function not_found(c: connection, line: string){
 function num_root(c: connection, user: string){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -894,7 +894,7 @@ function num_root(c: connection, user: string){
 function num_rootInkr(c: connection){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -909,7 +909,7 @@ function num_rootInkr(c: connection){
 function root_shell(c: connection, user: string){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -926,7 +926,7 @@ function root_shell(c: connection, user: string){
 function num_file_creations(c: connection){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -941,7 +941,7 @@ function num_file_creations(c: connection){
 function hot(c: connection){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -956,7 +956,7 @@ function hot(c: connection){
 function root_shell_num(c: connection){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -971,7 +971,7 @@ function root_shell_num(c: connection){
 function outbound (c: connection, command: string){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -986,7 +986,7 @@ function outbound (c: connection, command: string){
 event new_packet (c: connection, p: pkt_hdr){
 	local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -1008,7 +1008,7 @@ event new_packet (c: connection, p: pkt_hdr){
 event login_input_line(c: connection, line: string){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -1118,7 +1118,7 @@ event login_input_line(c: connection, line: string){
 event login_output_line(c: connection, line: string){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
@@ -1369,7 +1369,7 @@ global wrong_fragment_set: set[string] = {
 event conn_weird (name: string, c: connection, addl: string){
   local trans : string = fmt("%s", get_port_transport_proto(c$id$resp_p));
   local startTime : string = fmt("%.6f", c$start_time-6*60min);
-  local duration : string = fmt("%.6f", c$duration);
+  local duration : string = fmt("%.0f", c$duration);
   local orig_h : addr = c$id$orig_h;
   local resp_h : addr = c$id$resp_h;
   local orig_p : port = c$id$orig_p;
