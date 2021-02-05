@@ -558,10 +558,10 @@ event bro_done()
 		root_shell = (konexioaktcp[startTimet, orig_ht, orig_pt, resp_ht, resp_pt]$root_shell_num>0) ? 1 : 0;
 		is_hot_login = (konexioaktcp[startTimet, orig_ht, orig_pt, resp_ht, resp_pt]$is_hot_login > 0) ? 1 : 0;
 		is_guest_login = (konexioaktcp[startTimet, orig_ht, orig_pt, resp_ht, resp_pt]$is_guest_login > 0) ? 1 : 0;
-		print fmt("%d %s %d %d %s %s %s %s %s %d %s %s %s %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
+		print fmt("%d,%s,%d,%d,%s,%s,%s,%s,%s,%d,%s,%s,%s,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d",
    		konexioaktcp[startTimet, orig_ht, orig_pt, resp_ht, resp_pt]$num_conn, startTimet, 
     		orig_pt, resp_pt, orig_ht, resp_ht, 
-    		konexioaktcp[startTimet, orig_ht, orig_pt, resp_ht, resp_pt]$duration, service_name(resp_pt),"tcp",
+    		konexioaktcp[startTimet, orig_ht, orig_pt, resp_ht, resp_pt]$duration,"tcp",service_name(resp_pt),
 				resp_pt,
         konexioaktcp[startTimet, orig_ht, orig_pt, resp_ht, resp_pt]$flag,
         konexioaktcp[startTimet, orig_ht, orig_pt, resp_ht, resp_pt]$src_bytes,
@@ -607,13 +607,13 @@ event bro_done()
     is_guest_login = (konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$is_guest_login > 0) ? 1 : 0;
   	#icmp
     if(konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$protokoloa == "icmp"){
-   		print fmt("%d %s %s %s %s %s %s %s %s %s %s %s %s %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
+   		print fmt("%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d",
        	konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$num_conn, startTime, 
        	konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$orig_p, 
        	konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$resp_p, 
        	konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$orig_h, 
        	konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$resp_h,
-       	duration, service_name(resp_p),"icmp", 
+       	duration,"icmp",service_name(resp_p), 
        	konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$orig_p,
      		konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$flag,
      		konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$src_bytes, 
@@ -633,9 +633,9 @@ event bro_done()
 		}
 		#udp
 		else if (konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$protokoloa == "udp"){
-      print fmt("%d %s %d %d %s %s %s %s %s %d %s %s %s %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
+      print fmt("%d,%s,%d,%d,%s,%s,%s,%s,%s,%d,%s,%s,%s,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d",
          konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$num_conn, startTime,
-     		 orig_p, resp_p, orig_h, resp_h, duration, service_name(resp_p),"udp",
+     		 orig_p, resp_p, orig_h, resp_h, duration,"udp",service_name(resp_p),
 				 resp_p,
          konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$flag,
          konexioak[startTime, duration, orig_h, orig_p, resp_h, resp_p]$src_bytes,
