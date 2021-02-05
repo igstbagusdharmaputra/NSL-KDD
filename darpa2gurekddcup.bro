@@ -275,7 +275,7 @@ redef udp_content_deliver_all_resp = T;
 event udp_contents(u: connection, is_orig: bool, contents: string)
 {
   local startTime : string = fmt ("%.6f", u$start_time-6*60min);
-  local duration : string = fmt ("%.6f", u$duration);
+  local duration : string = fmt ("%.0f", u$duration);
   local orig_h : addr = u$id$orig_h;
   local resp_h : addr = u$id$resp_h;
   local orig_p : port = u$id$orig_p;
